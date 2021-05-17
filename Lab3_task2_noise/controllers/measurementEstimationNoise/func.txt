@@ -1,0 +1,68 @@
+def full_rotate(ts):
+    seconds = 7.5
+    left, right = get_rot_speed_rad(359.75, seconds, wheel_radius, d_mid)
+    # get the end time
+    end_time = seconds + robot.getTime()
+    # see if the colored cylinders are detected, if so store a 1, 
+    #in order, Y, R, G, B, if 0, not detected
+    colors_detected = [0,0,0,0]
+    cyl_dist_avgs = [0.0, 0.0, 0.0, 0.0]
+    cyl_distances = [[], [], [], []]
+    
+    while robot.step(ts) != -1:
+        # update and print the robot's details
+        update_robot(trilat=False)
+        if robot.getTime() < end_time:
+            # make the robot spin left to look for 
+            leftMotor.setVelocity(left)
+            rightMotor.setVelocity(right)
+            print("Rotating to get distance calculations from cylinders...")
+            # get the recognized objects
+            objs = camera.getRecognitionObjects()
+            #print(f"objs: {objs}")
+            if len(objs) != 0:
+                for i in range(len(objs)): 
+                    # if a specific color is detected, store a 1
+                    align = objs[i].get_position()[0]
+                    #print(f"colors from camera: {i}: {objs[i].get_colors()}")
+                    rel = 0
+                    if objs[i].get_colors() == Y:    
+                        colors_detected[0] = 1
+                        if -0.1 < align < 0.1:
+                            pos = objs[i].get_position()
+                            rel = math.fabs(m_to_i(pos[2])) + 3.14
+                            cyl_distances[0].append((m_to_i(fds.getValue()) + rel)/2.0)
+                    elif objs[i].get_colors() == R:
+                        colors_detected[1] = 1
+                        if -0.1 < align < 0.1:
+                            pos = objs[i].get_position()
+                            rel = math.fabs(m_to_i(pos[2])) + 3.14
+                            cyl_distances[1].append((m_to_i(fds.getValue()) + rel)/2.0)
+                    elif objs[i].get_colors() == G:
+                        colors_detected[2] = 1
+                        if -0.1 < align < 0.1:
+                            pos = objs[i].get_position()
+                            rel = math.fabs(m_to_i(pos[2])) + 3.14
+                            cyl_distances[2].append((m_to_i(fds.getValue()) + rel)/2.0)
+                    elif objs[i].get_colors() == B:
+                        colors_detected[3] = 1
+                        if -0.1 < align < 0.1:
+                            pos = objs[i].get_position()
+                            rel = math.fabs(m_to_i(pos[2])) + 3.14
+                            cyl_distances[3].append((m_to_i(fds.getValue()) + rel)/2.0)
+                    #print(f"rel: {rel}")
+                    #print(f"color: {objs[i].get_colors()}")
+                    
+                for i in range(len(cyl_distances)):
+                    sum = 0.0
+                    for j in range(len(cyl_distances[i])):
+                        sum += cyl_distances[i][j]
+                    if len(cyl_distances[i]) != 0.0:
+                        cyl_dist_avgs[i] = sum / len(cyl_distances[i])            
+                #print(f"cyl_distances: {cyl_distances}")
+                #print(f"cyl_dist_avgs: {cyl_dist_avgs}")
+        else:
+            stop_motors()
+            break
+    return colors_detected, cyl_dist_avgs        
+

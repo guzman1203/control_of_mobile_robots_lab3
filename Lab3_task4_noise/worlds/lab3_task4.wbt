@@ -1,0 +1,350 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.9993694044777278 0.03394266855417317 0.010425384657313552 5.315716219107848
+  position 0.1298410899457422 2.630308371536246 2.1026768833828955
+}
+TexturedBackground {
+  texture "factory"
+}
+TexturedBackgroundLight {
+}
+DEF RedCylinder Solid {
+  translation 0.508 0.14925005297109933 0.508
+  rotation -0.4436644451670948 0.8924131796216109 0.08222272758927664 -9.307289899444879e-16
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 0.381
+        radius 0.08
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject DEF landmark Shape {
+    appearance PBRAppearance {
+      baseColor 0 1 1
+      roughness 1
+      metalness 0
+    }
+    geometry Cylinder {
+      height 0.3
+      radius 0.045
+    }
+  }
+  physics DEF landmarkPH Physics {
+  }
+  locked TRUE
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF YellowCylinder Solid {
+  translation 0.508 0.14925005297109933 -0.508
+  rotation -0.433103795997105 0.8845940937974257 0.17295777262560225 -9.147712488515627e-16
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 1 0
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 0.381
+        radius 0.08
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject DEF landmark Shape {
+    appearance PBRAppearance {
+      baseColor 0 1 1
+      roughness 1
+      metalness 0
+    }
+    geometry Cylinder {
+      height 0.3
+      radius 0.045
+    }
+  }
+  physics DEF landmarkPH Physics {
+  }
+  locked TRUE
+  recognitionColors [
+    1 1 0
+  ]
+}
+DEF GreenCylinder Solid {
+  translation -0.508 0.14925005297109933 -0.508
+  rotation -0.40569502728575974 0.8977539787803817 0.17160809543725108 -8.02348892126221e-16
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 0.381
+        radius 0.08
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject DEF landmark Shape {
+    appearance PBRAppearance {
+      baseColor 0 1 1
+      roughness 1
+      metalness 0
+    }
+    geometry Cylinder {
+      height 0.3
+      radius 0.045
+    }
+  }
+  physics DEF landmarkPH Physics {
+  }
+  locked TRUE
+  recognitionColors [
+    0 1 0
+  ]
+}
+DEF BlueCylinder Solid {
+  translation -0.508 0.14925005297109933 0.508
+  rotation -0.3756844276619212 0.9116379008733119 0.16666597884282253 -9.35757902786734e-16
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 0.381
+        radius 0.08
+      }
+    }
+  ]
+  name "solid(5)"
+  boundingObject DEF landmark Shape {
+    appearance PBRAppearance {
+      baseColor 0 1 1
+      roughness 1
+      metalness 0
+    }
+    geometry Cylinder {
+      height 0.3
+      radius 0.045
+    }
+  }
+  physics DEF landmarkPH Physics {
+  }
+  locked TRUE
+  recognitionColors [
+    0 0 1
+  ]
+}
+WoodenBox {
+  translation -0.249028 0.05 -0.00121239
+  rotation 0 1 0 -1.5707953071795862
+  name "wooden box(1)"
+  size 0.508 0.1 0.01
+  locked TRUE
+}
+WoodenBox {
+  translation 0.00284437 0.05 0.245867
+  name "wooden box(3)"
+  size 0.508 0.08 0.01
+  locked TRUE
+}
+WoodenBox {
+  translation -0.12691 0.05 -0.253994
+  rotation 0 1 0 3.14159
+  name "wooden box(2)"
+  size 0.251 0.08 0.01
+  locked TRUE
+}
+WoodenBox {
+  translation 0.123374 0.05 -0.00122601
+  rotation 0 1 0 3.14159
+  name "wooden box(6)"
+  size 0.251 0.08 0.01
+  locked TRUE
+}
+WoodenBox {
+  translation 0.246909 0.05 -0.258041
+  rotation 0 1 0 -1.5707953071795862
+  name "wooden box(5)"
+  size 0.508 0.08 0.01
+  locked TRUE
+}
+DEF area RectangleArena {
+  floorSize 1.016 1.016
+  floorTileSize 0.508 0.508
+  wallAppearance BrushedAluminium {
+    colorOverride 0 0 0
+  }
+}
+DEF epuck E-puck {
+  hidden position_0_0 7.543347264425248e-09
+  hidden position_0_1 -2.5490203421323777e-08
+  hidden rotation_2 1 0 0 2.9802322387695313e-08
+  translation 0.3802216140152972 -0.00010131135517146665 0.37477411038903324
+  rotation -0.04240595304239807 -0.9990997350543687 0.0012060517635812118 0.0037932209207218984
+  controller "lab3task4"
+  supervisor TRUE
+  camera_width 50
+  turretSlot [
+    InertialUnit {
+      rotation 0 1 0 3.14
+      noise 0.1
+    }
+    DEF righthinge HingeJoint {
+      jointParameters HingeJointParameters {
+        position 4.1526691759634866e-08
+        axis -1 0 0
+        anchor 0 0.025 0
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+          consumptionFactor 70
+          controlPID 8 2 0.5
+        }
+        PositionSensor {
+          name "right wheel sensor"
+          noise 0.25
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500995778380096 0.02501338075785909 -2.46719304077288e-05
+        rotation 0.9999993203500066 0.001005273395393901 -0.0005905293603570326 4.6368370805280055
+        children [
+          DEF WHEEL Transform {
+            translation -0.007 0.01 -0.05
+            rotation 0 0 1 1.57
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 0
+                  transparency 1
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.02
+                }
+              }
+            ]
+            rotationStep 0.25
+          }
+        ]
+        name "right wheel(1)"
+        boundingObject USE WHEEL
+        physics DEF PHYSICS_WHEEL Physics {
+          density -1
+          mass 0.05
+        }
+        rotationStep 0.25
+      }
+    }
+    DEF lefthinge HingeJoint {
+      jointParameters HingeJointParameters {
+        position 2.989826910705434e-08
+        axis -1 0 0
+        anchor 0 0.025 0
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+          consumptionFactor 70
+          controlPID 8 0 0
+        }
+        PositionSensor {
+          name "left wheel sensor"
+          noise 0.25
+        }
+      ]
+      endPoint Solid {
+        translation -0.04501012942703836 0.0249776719759117 -4.5733975494465774e-05
+        rotation -0.9999982113395917 0.00047275264888793915 -0.0018313444653098516 1.2425810501871744
+        children [
+          DEF WHEEL Transform {
+            translation 0.007 0 -0.05
+            rotation 0 0 1 1.57
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.1 0.1
+                  transparency 1
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.02
+                }
+              }
+            ]
+            rotationStep 0.25
+          }
+        ]
+        name "left wheel(1)"
+        boundingObject USE WHEEL
+        physics DEF PHYSICS_WHEEL Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    DEF front_ds DistanceSensor {
+      translation 0 0 -0.045
+      rotation 0 1 0 1.5708
+      name "front_ds"
+      recognitionColors [
+        0 0 0
+      ]
+      lookupTable [
+        0 0 0
+        1.27 1.27 0.25
+      ]
+    }
+    DEF right_ds DistanceSensor {
+      translation 0.035 -0.01 -0.01
+      name "right_ds"
+      lookupTable [
+        0 0 0
+        1.27 1.27 0.25
+      ]
+    }
+    DEF left_ds DistanceSensor {
+      translation -0.035 -0.01 -0.01
+      rotation 0 1 0 3.14159
+      name "left_ds"
+      lookupTable [
+        0 0 0
+        1.27 1.27 0.25
+      ]
+    }
+    Camera {
+      translation 0 -0.01 -0.045
+      name "camera1"
+      recognitionColors [
+        1 1 0
+      ]
+      fieldOfView 1.57
+      width 80
+      height 80
+      recognition Recognition {
+      }
+    }
+  ]
+}
